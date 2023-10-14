@@ -1,5 +1,5 @@
 from account.account import *
-
+from savingsaccount.savingsaccount import *
 def main():
     #create an account object names a1 that has a balance of $100
     a1 = account(100.0)
@@ -94,16 +94,63 @@ def main():
     print("$%.2f" % account.sum(a1, s1))
 
     #transfer $25 out of a1 and put it into a new account named a4
-    # a4 = account.transfer(a1, 25.0)
+    a4 = account.transfer(a1, 25.0)
     # a4 = account.transfer(a1, -25.0) this line of code results in a ValueError
     # a4 = account.transfer(a1, 2500.0) this line of code results in a ValueError
     # a4 = account.transfer(a3, 25.0) this line of code results in a ValueError
-    a4 = account.transfer(s1, 25.0)
+    #a4 = account.transfer(s1, 25.0)
 
     #display the balances in a1 and a4
     print("Balance in a1 $%.2f" % (a1.getBalance()))
     print("Balance in a4 $%.2f" % (a4.getBalance()))
 
-    
+
+
+    #create a savings account object named sa1 and initialize its balance 
+    #to $10000 and its interest rate to 6%
+    sa1 = savingsaccount(10000.0, 0.06)
+
+    #display the balance of sa1
+    print("Balance in sa1 $%.2f" % (sa1.getBalance()))
+
+    #display the interest of sa1
+    print("Interest $%.2f" % (sa1.getInterest()))
+
+    #display if the balance of sa1 is empty
+    print("Is sa1 empty? ", sa1.isEmpty())
+
+    #display a string representation of sa1
+    print(sa1)
+
+    #display the result of testing if sa1 is equal to a1
+    print("is sa1 equal to a1?", sa1.__eq__(a1))
+
+    #display the result of testing if sa1 is equal to a3
+    print("is sa1 equal to a3", sa1.__eq__(a3))
+
+    #create a savings account object named sa2 and initialize its balance 
+    # to $10000 and its interest rate to 5% 
+    sa2 = savingsaccount(10000, 0.05)
+
+    #display the result of testing if sa1 is equal to sa2
+    print('Is sa1 equal to sa2?', sa1.__eq__(sa2))
+
+    #change the interest rate of sa2 to 6%
+    sa2.setInterestRate(.06)
+
+    #display the result of testing if sa1 is equal to sa2
+    print('Is sa1 equal to sa2?', sa1.__eq__(sa2))
+
+    #credit sa2 by $1000
+    sa2.credit(1000.0)
+
+    #display the balance of sa2
+    print("Balance in sa2 $%.2f" % (sa2.getBalance()))
+
+    #debit sa2  by $1000
+    sa2.debit(1000.0)
+
+    #display the balance of sa2
+    print("Balance in sa2 $%.2f" % (sa2.getBalance()))
 if __name__ == "__main__":
     main()
